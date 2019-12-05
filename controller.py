@@ -1,7 +1,7 @@
 import mazeGenerator as maze_generator
 import mazeSolver as maze_solver
 import dataToPlot as data_to_plot
-import plotGenerator
+
 import TKView
 import model
 
@@ -13,7 +13,8 @@ def solve_one_maze(maze):
    return maze_solver.solve_single_maze(maze)
 
 def generate_mazes(number_of_mazes, sizes):
-   maze_generator.generate(number_of_mazes, sizes)
+   maze_list = maze_generator.generate(number_of_mazes, sizes)
+   model.write_mazes_to_file(maze_list)
 
 def show_plot():
    # Få alle mazes ud af 
@@ -35,7 +36,7 @@ def show_plot():
 if __name__ == "__main__":
    # running controller function
    # Skal køre TKview
-   TKView
+   TKView.start_plot()
 
 '''
 SPØRGSMÅL TIL BJRANE

@@ -1,11 +1,5 @@
-from random import randint, shuffle, choice
+from random import shuffle
 import sys
-import csv
-import platform
-import os
-
-import threading
-import time
 import concurrent.futures
 
 
@@ -54,14 +48,5 @@ def generate(number_of_mazes, sizes):
             mazeList.append([[x*2+1, number_of_mazes]])
             for _ in range(number_of_mazes):
                 executor.submit(convert(DFS(make_empty_maze(x,x)), mazeList))
-    write_to_file(mazeList)
     return mazeList
  
-
-def write_to_file(mazeList):
-    with open('files//maze.csv', 'w',newline='') as csvFile:
-            writer = csv.writer(csvFile)
-            for maze in mazeList:
-                for row in maze:
-                    writer.writerow(row)
-

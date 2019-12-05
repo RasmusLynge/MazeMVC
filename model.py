@@ -1,5 +1,3 @@
-import mazeGenerator as mazeGen
-import plotGenerator as plot
 import fileHandling as db
 
 
@@ -22,19 +20,3 @@ def read_maze_dict():
 def read_maze_and_data_from_file():
     all_mazes, number_of_mazes, sizes = db.read_mazes_from_file()
     return all_mazes, number_of_mazes, sizes
-
-
-
-
-
-
-
-
-
-def generateMaze(number_of_mazes, sizes):
-    mazeGen.generate(number_of_mazes, sizes)
-
-
-def generateStats():
-    # plot.generate()
-    plot.generate_plot()
