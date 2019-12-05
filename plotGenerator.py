@@ -1,11 +1,9 @@
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from matplotlib.ticker import FormatStrFormatter
 import csv
 
-# Denne del virker med plotting fra mazeinfo-filen
 def generate_plot(plot_data):
-   # print(data)
+   # nem oversigt over hvilket data vi bruger. Kan fjernes. Hav syntes i? 
    maze_sizes = plot_data["maze_sizes"]
    avg_times = plot_data["avg_times"]
    min_times = plot_data["min_times"]
@@ -14,14 +12,6 @@ def generate_plot(plot_data):
    min_counts = plot_data["min_counts"]
    max_counts = plot_data["max_counts"]
 
-   
-
-
-   # Plot start
-
-   # Sørger for at matplotlib kan udskrive det lange ns-tal i y aksen
-   ax = plt.gca()
-   ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
    
    # subplot fortæller at der kommer flere grafer og bestemmer opsætning. de tre tal er et todimentionelt array og nr. i arryaet
    plt.subplot(1,2,1)

@@ -25,10 +25,9 @@ def read_mazes_from_file():
             full_grid = []
             all_mazes = []
 
-            number_of_sizes = next(csv_reader)
+            number_of_sizes = next(csv_reader)[0]
 
-            for __ in range(int(number_of_sizes[0])):
-
+            for __ in range(int(number_of_sizes)):
                 rows_in_maze = 0
                 number_of_mazes = 0
                 maze_info = next(csv_reader)
