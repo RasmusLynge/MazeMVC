@@ -5,6 +5,8 @@ import plotGenerator as plot_generator
 WIDTH = 1500
 HEIGHT = 700
 
+# https://refactoring.guru/design-patterns/observer
+
 maze_array = []
 
 def start_plot():
@@ -135,7 +137,7 @@ def start_plot():
     canvas.pack()
 
 
-    # Top Frame
+    ############### Top Frame ###############
     top_frame = tk.Frame(root, bg="grey")
     top_frame.place(relwidth=1, relheight=0.1)
 
@@ -143,7 +145,8 @@ def start_plot():
     header.config(font=('lucida console', 19))
     header.place(relx=0.45, rely=0.45)
 
-    # Center Frame
+
+    ############### Center Frame ###############
     frame_center = tk.Frame(root, bg="grey")
     frame_center.place(relwidth=0.45, relheight=0.7, relx=0.3, rely=0.1)
 
@@ -156,7 +159,8 @@ def start_plot():
     display_maze = tk.Label(label_center, bg="white")
     display_maze.place(relwidth=1, relheight=1)
 
-    # Left side Frame
+
+    ############### Left side Frame ###############
     frame_left_side = tk.Frame(root, bg='grey')
     frame_left_side.place(relwidth=0.3, relheight=0.9, rely=0.1)
 
@@ -196,7 +200,8 @@ def start_plot():
     text_log.config(font=('lucida console', 9))
     text_log.place(relx=0, rely=1, anchor="sw")
 
-    # Right side frame
+
+    ############### Right side frame ###############
     frame_right_side = tk.Frame(root, bg='grey')
     frame_right_side.place(relwidth=0.3, relheight=0.9, rely=0.1, relx=0.75)
 
@@ -215,14 +220,13 @@ def start_plot():
 
     Listbox_maze_list = tk.Listbox(
         frame_maze_list, yscrollcommand=scrollbar.set, selectbackground="brown")
-    # sæt selectmode=MULTIPLE hvis man skal kunne vælge flere
 
     button_select_maze = tk.Button(frame_right_side, text='Select maze',
                                 command=select_maze, bg='brown', fg='white', font=('helvetica', 9, 'bold'))
     button_select_maze.place(relx=0.1, rely=0.838, relwidth=0.3, relheight=0.072)
 
 
-    # Bottom Frame
+    ############### Bottom Frame ###############
     frame_bottom = tk.Frame(root, bg='grey')
     frame_bottom.place(relwidth=0.45, relheight=0.2, relx=0.3, rely=0.8)
 
