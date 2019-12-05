@@ -11,37 +11,6 @@ maze_array = []
 
 def start_plot():
 
-    def solve_single_maze():
-        global maze_array
-        selected = Listbox_maze_list.curselection()
-        maze_number = 0
-        write_to_log("\n\nSolving the maze...")
-        if selected:
-            for value in selected:
-                maze_number = value
-            soved_maze = controller.solve_one_maze(maze_array[maze_number])
-            write_to_log("\n\nYou selected maze nr %s \nGenerating maze" % (maze_number + 1))
-            row_count = 0
-            for row in soved_maze:
-                value_count = 0
-                for value in row:
-                    color = "white"
-                    if(value == 1):
-                        color = "black"
-                    if(value == 2):
-                        color = "green"
-                    if(value == 3):
-                        color = "pink"
-                    tk.Label(display_maze, bg=color, borderwidth=1).place(
-                        relwidth=(1 / len(soved_maze)), relheight=(1 / len(soved_maze)),
-                        relx=(value_count/len(soved_maze)), rely=(row_count/len(soved_maze)))
-                    value_count += 1
-                row_count += 1
-        else:
-            write_to_log("\n\nPlease select a maze")
-
-
-
     def generate_simple_mazes():
         write_to_log(
             "\n\nCreating 6 mazes \nof size 5, 10, 15, \n20, 25 and 30...")
@@ -69,7 +38,6 @@ def start_plot():
         plot_generator.generate_plot(plot_data)
         
 
-
     def select_maze():
         global maze_array
         maze_number = 0
@@ -79,26 +47,43 @@ def start_plot():
             for value in selected:
                 maze_number = value
             write_to_log("\n\nYou selected maze nr %s \nGenerating maze" % (maze_number + 1))
-            row_count = 0
-            for row in maze_array[maze_number]:
-                value_count = 0
-                for value in row:
-                    color = "white"
-                    if(value == 1):
-                        color = "black"
-                    if(value == 2):
-                        color = "green"
-                    if(value == 3):
-                        color = "pink"
-                    tk.Label(display_maze, bg=color, borderwidth=1).place(
-                        relwidth=(1 / len(maze_array[maze_number])), relheight=(1 / len(maze_array[maze_number])),
-                        relx=(value_count/len(maze_array[maze_number])), rely=(row_count/len(maze_array[maze_number])))
-                    value_count += 1
-                row_count += 1
+            show_maze(maze_array[maze_number])
         else:
             load_maze_list()
             write_to_log("\n\nSelect a maze")
 
+
+    def solve_single_maze():
+        global maze_array
+        maze_number = 0
+        selected = Listbox_maze_list.curselection()
+        if selected:
+            for value in selected:
+                maze_number = value
+            write_to_log("\n\nSolving the maze nr %s..." % (maze_number + 1))
+            maze = controller.solve_one_maze(maze_array[maze_number])
+            show_maze(maze)
+        else:
+            write_to_log("\n\nPlease select a maze")
+
+
+    def show_maze(maze):
+        row_count = 0
+        for row in maze:
+            value_count = 0
+            for value in row:
+                color = "white"
+                if(value == 1):
+                    color = "black"
+                if(value == 2):
+                    color = "green"
+                if(value == 3):
+                    color = "pink"
+                tk.Label(display_maze, bg=color, borderwidth=1).place(
+                    relwidth=(1 / len(maze)), relheight=(1 / len(maze)),
+                    relx=(value_count/len(maze)), rely=(row_count/len(maze)))
+                value_count += 1
+            row_count += 1
 
     def show_maze_list():
         global maze_array
