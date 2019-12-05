@@ -54,7 +54,8 @@ def generate(number_of_mazes, sizes):
             mazeList.append([[x*2+1, number_of_mazes]])
             for _ in range(number_of_mazes):
                 executor.submit(convert(DFS(make_empty_maze(x,x)), mazeList))
-    write_to_file(mazeList) 
+    write_to_file(mazeList)
+    return mazeList
  
 
 def write_to_file(mazeList):
