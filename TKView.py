@@ -48,7 +48,7 @@ def start_plot():
             for value in selected:
                 maze_number = value
             pub.dispatch(
-                "\n\nYou selected maze nr %s \nGenerating maze" % (maze_number + 1))
+                "\n\nYou selected maze nr %s" % (maze_number + 1))
             show_maze(maze_array[maze_number])
         else:
             load_maze_list()
@@ -107,11 +107,13 @@ def start_plot():
 
         if isLog:
             hide_log.place(relx=0.1, rely=1)
-            pub.register(test)
+            pub.register(logSubscriber)
+            button_showhide_log.config(text="Hide Log")
             isLog = False
         else:
             hide_log.place(relx=0.1, rely=0.5)
-            pub.unregister(test)
+            pub.unregister(logSubscriber)
+            button_showhide_log.config(text="Show Log")
             isLog = True
 
     ###### Observer Pattern ######
@@ -141,8 +143,8 @@ def start_plot():
         text_log['text'] += message
 
     pub = Publisher()
-    test = Subscriber(write_to_log)
-    pub.register(test)
+    logSubscriber = Subscriber(write_to_log)
+    pub.register(logSubscriber)
 
     if(maze_array == []):
         try:
@@ -216,14 +218,14 @@ def start_plot():
 
     text_log = tk.Label(frame_log, text='Welcome', borderwidth=1)
     text_log.config(font=('lucida console', 9))
-    text_log.place(relx=0, rely=1, anchor="sw")
+    text_log.place(relx=0.0, rely=1, anchor="sw")
 
     hide_log = tk.Frame(frame_left_side, bg="grey")
     hide_log.place(relx=0.1, rely=1, relwidth=0.65, relheight=0.4)
 
-    button_generate_maze = tk.Button(frame_left_side, text='Show/Hide log', bg='brown', fg='white', font=('helvetica', 9, 'bold'),
+    button_showhide_log = tk.Button(frame_left_side, text='Hide log', bg='brown', fg='white', font=('helvetica', 9, 'bold'),
                                      command=log_action)
-    button_generate_maze.place(
+    button_showhide_log.place(
         relx=0.1, rely=0.9, relwidth=0.2, relheight=0.03)
 
     ############### Right side frame ###############
