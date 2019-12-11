@@ -109,16 +109,26 @@ def solveOld():
 timers = []
 counts = []
 
-
-def threadTask(all_mazes, maze_count,thread_id):
+def threadTask(all_mazes, maze_counter,thread_id,counts_map,timer_map):
     global count
     global timers
     global counts
+
+    print ("maze ---")
+    #print(all_mazes[maze_count])
     start = time.time_ns()
-    search(1, 1, all_mazes[maze_count])
+    print("maze count = "+ str(maze_counter))
+    search(1, 1, all_mazes[maze_counter])
     end = time.time_ns()
+
     timers.append(end-start)
-    counts.append(count)
+    a = end-start
+    print("timer = "+ str(a))
+    print("count = "+ str(count))
+
+    timer_map[thread_id] = end-start
+    counts_map[thread_id] = count
+
     count = 0
     #Lig hver sin thread ned i et hashmap, med tilhørende id. Gem informationen count
 
@@ -131,14 +141,20 @@ def solve():
     
     with concurrent.futures.ThreadPoolExecutor(max_workers=number_of_mazes) as executor:
    
+        iterator = 0
         for size in range(len(sizes)):
 
+            timer_map=dict()
+            counts_map=dict()
             for maze_count in range(number_of_mazes):
-                thread_id = "ID"+size+maze_count
-                executor.submit( threadTask(all_mazes, maze_count,thread_id))
-
+                thread_id = "ID"+str(size)+str(maze_count)
+                print("------------ thread id: "+thread_id)
+                executor.submit( threadTask(all_mazes, iterator,thread_id,counts_map,timer_map))
+                iterator+=1
                 
-            mazeDict = {"size": int((sizes[size]-1)/2),"timers": timers, "counts": counts, "avg_time":round(average_calculator(timers), 2)}
+                
+
+            mazeDict = {"size": int((sizes[size]-1)/2),"timers": timer_map, "counts": counts_map, "avg_time":round(average_calculator(timers), 2)}
             maze_dict_list.append(mazeDict)
 
     #print(maze_dict_list)
@@ -155,6 +171,7 @@ def write_maze_info(dict_data):
 
     try:
         with open('files//mazeinformation.csv', 'w',newline=newline) as csvfile:
+            csvfile.truncate(0)
             writer = csv.DictWriter(csvfile, fieldnames=["size", "timers", "counts", "avg_time"])
             writer.writeheader()
             # Når writer skriver timers array bliver det lavet til en string. hvoirfor? 
