@@ -3,16 +3,19 @@ import platform
 
 
 def write_mazes_to_file(mazeList):
-    if platform.system() == 'Windows':
-        newline = ''
-    else:
-        newline = None
+    try:
+        if platform.system() == 'Windows':
+            newline = ''
+        else:
+            newline = None
 
-    with open('files//maze.csv', 'w', newline=newline) as csvFile:
-        writer = csv.writer(csvFile)
-        for maze in mazeList:
-            for row in maze:
-                writer.writerow(row)
+        with open('files//maze.csv', 'w', newline=newline) as csvFile:
+            writer = csv.writer(csvFile)
+            for maze in mazeList:
+                for row in maze:
+                    writer.writerow(row)
+    except FileNotFoundError:
+        raise
 
 
 def read_mazes_from_file():
@@ -67,7 +70,7 @@ def write_maze_dict(dict_data):
             for data in dict_data:
                 writer.writerow(data)
     except FileNotFoundError:
-        print("No file found, creating one")
+        raise
 
 
 def read_maze_dict():
@@ -84,4 +87,4 @@ def read_maze_dict():
                 maze_dict = {}
             return maze_data_list
     except FileNotFoundError:
-        print("No mazes \n Run the generator")
+        raise
