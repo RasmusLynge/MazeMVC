@@ -1,5 +1,5 @@
 import mazeGenerator as maze_generator
-import mazeSolverThread as maze_solver
+import mazeSolver as maze_solver
 import dataToPlot as data_to_plot
 
 import TKView
@@ -37,10 +37,3 @@ if __name__ == "__main__":
    # running controller function
    # Skal køre TKview
    TKView.start_plot()
-
-'''
-SPØRGSMÅL TIL BJRANE
-- Hvordan skal exceptions helst laves i dette program? hvordan thrower og catcher man exceptions?
-- Hvordan ligger vi M, V og C ind i hver sin mappe? 
-- Bedste design pattern? 
-'''
