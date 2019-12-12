@@ -1,5 +1,5 @@
 import mazeGenerator as maze_generator
-import mazeSolver as maze_solver
+import mazeSolverThread as maze_solver
 import dataToPlot as data_to_plot
 
 import TKView

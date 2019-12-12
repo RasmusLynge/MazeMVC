@@ -17,19 +17,19 @@ def generate_plot(plot_data):
    plt.subplot(1,2,1)
 
    # bar laver de firkanter der viser tiden
-   plt.bar(maze_sizes, min_times, width=-1, align='edge', label='Min solve time')
-   plt.bar(maze_sizes, max_times, width=1, align='edge', label='Max solve time')
+   plt.bar(maze_sizes, max_times, width=1, align='center', label='Max solve time')
    plt.bar(maze_sizes, avg_times, width=1, align='center', label='Avg solve time') # bar(x-vals, y-vals, bar width, align bar relative to x-val on x-axis) )
+   plt.bar(maze_sizes, min_times, width=1, align='center', label='Min solve time')
    
    # legend er den lille boks som viser hvad baren/farverne betyder 
    plt.legend(loc='upper left')
    
-   plt.axis([0, max(maze_sizes) +2, 0, max(max_times) + (max(max_times) / 5)]) #axis(x-min, x-max, y-min, y-max)
+   plt.axis([min(maze_sizes)-2, max(maze_sizes) +2, 0, max(max_times) + (max(max_times) / 5)]) #axis(x-min, x-max, y-min, y-max)
    
    # Plot udskriver den tynde linjer.
-   plt.plot(maze_sizes, min_times, linewidth=0.5, linestyle="-", marker="o")
    plt.plot(maze_sizes, max_times, linewidth=0.5, linestyle="-", marker="o")
    plt.plot(maze_sizes, avg_times, linewidth=0.5, linestyle="-", marker="o")
+   plt.plot(maze_sizes, min_times, linewidth=0.5, linestyle="-", marker="o")
 
    # grid giver det grå grid i baggrunden
    plt.grid(color="g", linestyle="--", linewidth="0.1") # laver grid
@@ -39,17 +39,17 @@ def generate_plot(plot_data):
    
    # Nr. 2 graf starter her 
    plt.subplot(1,2,2)
-   plt.bar(maze_sizes,min_counts, width=-1, align='edge', label='Min solve time')
-   plt.bar(maze_sizes, max_counts, width=1, align='edge', label='Max solve time')
+   plt.bar(maze_sizes, max_counts, width=1, align='center', label='Max solve time')
    plt.bar(maze_sizes, avg_counts, width=1, align='center', label='Avg solve time')
+   plt.bar(maze_sizes,min_counts, width=1, align='center', label='Min solve time')
    
    plt.legend(loc='upper left')
    
-   plt.axis([3, max(maze_sizes) +2, 0, max(max_counts) + 10])
+   plt.axis([min(maze_sizes)-5, max(maze_sizes) +5, 0, max(max_counts) + 10])
 
-   plt.plot(maze_sizes, min_counts, linewidth=0.5, linestyle="-", marker="o")
    plt.plot(maze_sizes, max_counts, linewidth=0.5, linestyle="-", marker="o")
    plt.plot(maze_sizes, avg_counts, linewidth=0.5, linestyle="-", marker="o")
+   plt.plot(maze_sizes, min_counts, linewidth=0.5, linestyle="-", marker="o")
 
 
    plt.grid(color="g", linestyle="--", linewidth="0.1")
