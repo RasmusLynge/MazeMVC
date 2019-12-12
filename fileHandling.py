@@ -24,7 +24,7 @@ def read_mazes_from_file():
             row_grid = []
             full_grid = []
             all_mazes = []
-
+            
             number_of_sizes = next(csv_reader)[0]
 
             for __ in range(int(number_of_sizes)):
@@ -48,8 +48,8 @@ def read_mazes_from_file():
                     full_grid = []
                     number_of_mazes += 1
         return all_mazes, number_of_mazes, sizes
-    except (FileNotFoundError):
-        print("Error. Try making new mazes")
+    except (FileNotFoundError,StopIteration):
+        raise
 
 
 def write_maze_dict(dict_data):
