@@ -39,9 +39,9 @@ def generate_plot(plot_data):
    
    # Nr. 2 graf starter her 
    plt.subplot(1,2,2)
-   plt.bar(maze_sizes, max_counts, width=1, align='center', label='Max solve time')
-   plt.bar(maze_sizes, avg_counts, width=1, align='center', label='Avg solve time')
-   plt.bar(maze_sizes,min_counts, width=1, align='center', label='Min solve time')
+   plt.bar(maze_sizes, max_counts, width=1, align='center', label='Max points visited')
+   plt.bar(maze_sizes, avg_counts, width=1, align='center', label='Avg points visited')
+   plt.bar(maze_sizes,min_counts, width=1, align='center', label='Min points visited')
    
    plt.legend(loc='upper left')
    

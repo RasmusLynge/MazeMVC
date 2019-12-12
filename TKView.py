@@ -14,8 +14,6 @@ isLog = False
 def start_plot():
 
     def generate_simple_mazes():
-        # write_to_log(
-        #    "\n\nCreating 6 mazes \nof size 5, 10, 15, \n20, 25 and 30...")
         pub.dispatch(
             "\n\nCreating 6 mazes \nof size 5, 10, 15, \n20, 25 and 30...")
         controller.generate_mazes(6, [5, 10, 15, 20, 25, 30])
@@ -117,7 +115,6 @@ def start_plot():
             isLog = True
 
     ###### Observer Pattern ######
-
     class Subscriber:
         def __init__(self, name):
             self.name = name
