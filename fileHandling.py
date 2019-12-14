@@ -1,15 +1,17 @@
 import csv
 import platform
 
+def newLinesystem():
+    if platform.system() == 'Windows':
+        newline = ''
+    else:
+        newline = None
+    return newline
+
 
 def write_mazes_to_file(mazeList):
     try:
-        if platform.system() == 'Windows':
-            newline = ''
-        else:
-            newline = None
-
-        with open('files//maze.csv', 'w', newline=newline) as csvFile:
+        with open('files//maze.csv', 'w', newline=newLinesystem()) as csvFile:
             writer = csv.writer(csvFile)
             for maze in mazeList:
                 for row in maze:
@@ -56,15 +58,10 @@ def read_mazes_from_file():
 
 
 def write_maze_dict(dict_data):
-    if platform.system() == 'Windows':
-        newline = ''
-    else:
-        newline = None
-
     try:
-        with open('files//mazeinformation.csv', 'w', newline=newline) as csvfile:
+        with open('files//mazeinformation.csv', 'w', newline=newLinesystem()) as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=[
-                                    "size", "timers", "counts", "avg_time"])
+                                    "size", "timers", "counts"])
             writer.writeheader()
             # Når writer skriver timers array bliver det lavet til en string. hvoirfor?
             for data in dict_data:
@@ -82,7 +79,7 @@ def read_maze_dict():
             keys = next(csv_reader)
             for row in csv_reader:
                 maze_dict = {keys[0]: row[0], keys[1]: row[1],
-                             keys[2]: row[2], keys[3]: row[3]}
+                             keys[2]: row[2]}
                 maze_data_list.append(maze_dict)
                 maze_dict = {}
             return maze_data_list

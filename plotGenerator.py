@@ -3,7 +3,7 @@ import matplotlib.patches as mpatches
 import csv
 
 def generate_plot(plot_data):
-   # nem oversigt over hvilket data vi bruger. Kan fjernes. Hav syntes i? 
+   # nem oversigt over hvilket data vi bruger. Kan fjernes. Hvad syntes i? 
    maze_sizes = plot_data["maze_sizes"]
    avg_times = plot_data["avg_times"]
    min_times = plot_data["min_times"]
@@ -39,13 +39,14 @@ def generate_plot(plot_data):
    
    # Nr. 2 graf starter her 
    plt.subplot(1,2,2)
+
    plt.bar(maze_sizes, max_counts, width=1, align='center', label='Max points visited')
    plt.bar(maze_sizes, avg_counts, width=1, align='center', label='Avg points visited')
    plt.bar(maze_sizes,min_counts, width=1, align='center', label='Min points visited')
    
    plt.legend(loc='upper left')
    
-   plt.axis([min(maze_sizes)-5, max(maze_sizes) +5, 0, max(max_counts) + 10])
+   plt.axis([min(maze_sizes)-2, max(maze_sizes) +2, 0, max(max_counts) + (max(max_counts) / 5)])
 
    plt.plot(maze_sizes, max_counts, linewidth=0.5, linestyle="-", marker="o")
    plt.plot(maze_sizes, avg_counts, linewidth=0.5, linestyle="-", marker="o")
