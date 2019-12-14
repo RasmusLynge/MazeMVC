@@ -41,12 +41,17 @@ def DFS(maze, coords=(0,0)):
     return maze
 
 def generate(number_of_mazes, sizes):
-    mazeList = []
-    mazeList.append(([[len(sizes)]]))
-    with concurrent.futures.ThreadPoolExecutor(max_workers=number_of_mazes) as executor:
-        for x in sizes:
-            mazeList.append([[x*2+1, number_of_mazes]])
-            for _ in range(number_of_mazes):
-                executor.submit(convert(DFS(make_empty_maze(x,x)), mazeList))
-    return mazeList
- 
+    try:
+        size_list = [int(i) for i in sizes]
+        mazeList = []
+        mazeList.append(([[len(size_list)]]))
+        with concurrent.futures.ThreadPoolExecutor(max_workers=number_of_mazes) as executor:
+            for x in size_list:
+                mazeList.append([[x*2+1, number_of_mazes]])
+                for _ in range(number_of_mazes):
+                    executor.submit(convert(DFS(make_empty_maze(x,x)), mazeList))
+        return mazeList
+    except TypeError:
+        raise
+    except ValueError:
+        raise

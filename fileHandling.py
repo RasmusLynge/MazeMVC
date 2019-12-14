@@ -17,7 +17,7 @@ def write_mazes_to_file(mazeList):
                 for row in maze:
                     writer.writerow(row)
     except FileNotFoundError:
-        raise
+        pass
 
 
 def read_mazes_from_file():
@@ -53,8 +53,10 @@ def read_mazes_from_file():
                     full_grid = []
                     number_of_mazes += 1
         return all_mazes, number_of_mazes, sizes
-    except (FileNotFoundError,StopIteration):
-        raise
+    except FileNotFoundError as e:
+        raise e
+    except StopIteration as e:
+        raise e
 
 
 def write_maze_dict(dict_data):
@@ -66,8 +68,8 @@ def write_maze_dict(dict_data):
             # Når writer skriver timers array bliver det lavet til en string. hvoirfor?
             for data in dict_data:
                 writer.writerow(data)
-    except FileNotFoundError:
-        raise
+    except TypeError:
+        pass
 
 
 def read_maze_dict():
@@ -84,4 +86,4 @@ def read_maze_dict():
                 maze_dict = {}
             return maze_data_list
     except FileNotFoundError:
-        raise
+        pass
