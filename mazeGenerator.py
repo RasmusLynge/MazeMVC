@@ -49,4 +49,3 @@ def generate(number_of_mazes, sizes):
             for _ in range(number_of_mazes):
                 executor.submit(convert(DFS(make_empty_maze(x,x)), mazeList))
     return mazeList
- 
