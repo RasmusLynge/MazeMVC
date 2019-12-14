@@ -21,14 +21,17 @@ def start_plot():
         load_maze_list()
 
     def generate_single_maze(number, size):
-        if number:
+        if number and size:
             pub.dispatch("\n\nCreating %s mazes \nwith a size of %s..." %
                          (size, number))
             number_list = number.split(" ")
-            size_list = [int(i) for i in number_list]
-            controller.generate_mazes(int(size), size_list)
-            pub.dispatch("\nDone.")
-            load_maze_list()
+            try: 
+                size_list = [int(i) for i in number_list]
+                controller.generate_mazes(int(size), size_list)       
+                pub.dispatch("\nDone.")
+                load_maze_list()
+            except ValueError:
+                pub.dispatch('\n\nOnly type in integers \n size can be seperated by spaces.')
         else:
             pub.dispatch("\n\nType preferred \nmaze size and number.")
 
