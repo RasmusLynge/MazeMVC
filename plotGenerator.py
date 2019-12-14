@@ -12,7 +12,7 @@ def generate_plot(plot_data):
    min_counts = plot_data["min_counts"]
    max_counts = plot_data["max_counts"]
 
-   
+
    # subplot fortæller at der kommer flere grafer og bestemmer opsætning. de tre tal er et todimentionelt array og nr. i arryaet
    plt.subplot(1,2,1)
 
@@ -20,12 +20,12 @@ def generate_plot(plot_data):
    plt.bar(maze_sizes, max_times, width=1, align='center', label='Max solve time')
    plt.bar(maze_sizes, avg_times, width=1, align='center', label='Avg solve time') # bar(x-vals, y-vals, bar width, align bar relative to x-val on x-axis) )
    plt.bar(maze_sizes, min_times, width=1, align='center', label='Min solve time')
-   
+
    # legend er den lille boks som viser hvad baren/farverne betyder 
    plt.legend(loc='upper left')
-   
+
    plt.axis([min(maze_sizes)-2, max(maze_sizes) +2, 0, max(max_times) + (max(max_times) / 5)]) #axis(x-min, x-max, y-min, y-max)
-   
+
    # Plot udskriver den tynde linjer.
    plt.plot(maze_sizes, max_times, linewidth=0.5, linestyle="-", marker="o")
    plt.plot(maze_sizes, avg_times, linewidth=0.5, linestyle="-", marker="o")
@@ -36,16 +36,15 @@ def generate_plot(plot_data):
    plt.title('Solving time', fontsize=12)
    plt.xlabel("maze size", fontsize=10)
    plt.ylabel("time in ns", fontsize=10)
-   
-   # Nr. 2 graf starter her 
+# Nr. 2 graf starter her 
    plt.subplot(1,2,2)
 
    plt.bar(maze_sizes, max_counts, width=1, align='center', label='Max points visited')
    plt.bar(maze_sizes, avg_counts, width=1, align='center', label='Avg points visited')
    plt.bar(maze_sizes,min_counts, width=1, align='center', label='Min points visited')
-   
+
    plt.legend(loc='upper left')
-   
+
    plt.axis([min(maze_sizes)-2, max(maze_sizes) +2, 0, max(max_counts) + (max(max_counts) / 5)])
 
    plt.plot(maze_sizes, max_counts, linewidth=0.5, linestyle="-", marker="o")

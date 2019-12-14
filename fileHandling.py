@@ -1,7 +1,7 @@
 import csv
 import platform
 
-def newLinesystem():
+def newline_system():
     if platform.system() == 'Windows':
         newline = ''
     else:
@@ -11,13 +11,13 @@ def newLinesystem():
 
 def write_mazes_to_file(mazeList):
     try:
-        with open('files//maze.csv', 'w', newline=newLinesystem()) as csvFile:
+        with open('files//maze.csv', 'w', newline=newline_system()) as csvFile:
             writer = csv.writer(csvFile)
             for maze in mazeList:
                 for row in maze:
                     writer.writerow(row)
     except FileNotFoundError:
-        raise
+        pass
 
 
 def read_mazes_from_file():
@@ -53,21 +53,23 @@ def read_mazes_from_file():
                     full_grid = []
                     number_of_mazes += 1
         return all_mazes, number_of_mazes, sizes
-    except (FileNotFoundError,StopIteration):
-        raise
+    except FileNotFoundError as e:
+        raise e
+    except StopIteration as e:
+        raise e
 
 
 def write_maze_dict(dict_data):
     try:
-        with open('files//mazeinformation.csv', 'w', newline=newLinesystem()) as csvfile:
+        with open('files//mazeinformation.csv', 'w', newline=newline_system()) as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=[
                                     "size", "timers", "counts"])
             writer.writeheader()
             # Når writer skriver timers array bliver det lavet til en string. hvoirfor?
             for data in dict_data:
                 writer.writerow(data)
-    except FileNotFoundError:
-        raise
+    except TypeError:
+        pass
 
 
 def read_maze_dict():
@@ -84,4 +86,4 @@ def read_maze_dict():
                 maze_dict = {}
             return maze_data_list
     except FileNotFoundError:
-        raise
+        pass

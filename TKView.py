@@ -26,11 +26,11 @@ def start_plot():
                          (size, number))
             number_list = number.split(" ")
             try: 
-                size_list = [int(i) for i in number_list]
-                controller.generate_mazes(int(size), size_list)       
+                #size_list = [int(i) for i in number_list]
+                controller.generate_mazes(int(size), number_list)       
                 pub.dispatch("\nDone.")
                 load_maze_list()
-            except ValueError:
+            except (TypeError, ValueError):
                 pub.dispatch('\n\nOnly type in integers \n size can be seperated by spaces.')
         else:
             pub.dispatch("\n\nType preferred \nmaze size and number.")
