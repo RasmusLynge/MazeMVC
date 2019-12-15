@@ -1,7 +1,7 @@
 import csv
 import platform
 
-def newLinesystem():
+def newline_system():
     if platform.system() == 'Windows':
         newline = ''
     else:
@@ -11,7 +11,7 @@ def newLinesystem():
 
 def write_mazes_to_file(mazeList):
     try:
-        with open('files//maze.csv', 'w', newline=newLinesystem()) as csvFile:
+        with open('files//maze.csv', 'w', newline=newline_system()) as csvFile:
             writer = csv.writer(csvFile)
             for maze in mazeList:
                 for row in maze:
@@ -61,7 +61,7 @@ def read_mazes_from_file():
 
 def write_maze_dict(dict_data):
     try:
-        with open('files//mazeinformation.csv', 'w', newline=newLinesystem()) as csvfile:
+        with open('files//mazeinformation.csv', 'w', newline=newline_system()) as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=[
                                     "size", "timers", "counts"])
             writer.writeheader()
