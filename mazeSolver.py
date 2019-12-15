@@ -13,19 +13,16 @@ count = 0
 def search(x, y, grid):
     global count
     if grid[x][y] == 2:
-#        print("found at %d,%d" % (x, y))
         return True
     elif grid[x][y] == 1:
-#        print('wall at %d,%d' % (x, y))
         return (False)
     elif grid[x][y] == 3:
-        count += 1
-#        print('visited at %d,%d' % (x, y))
+        
         return (False)
-#    print('visiting %d,%d' % (x, y))
 
 # mark as visited
     grid[x][y] = 3
+    count += 1
 
 # explore neighbors clockwise starting by the one on the right
     if ((x < (len(grid)-1) and search(x+1, y, grid))
@@ -33,7 +30,6 @@ def search(x, y, grid):
         or (x > 0 and search(x-1, y, grid))
         or (y < len(grid)-1 and search(x, y-1, grid))):
         return True
-#    print("Im out of the search")
     return False
 
 
@@ -48,7 +44,6 @@ def threadTask(all_mazes, maze_counter,thread_id,counts_map,timer_map):
     counts_map[thread_id] = count
 
     count = 0
-    #Lig hver sin thread ned i et hashmap, med tilhørende id. Gem informationen count
 
 def solve(all_mazes,  number_of_mazes, sizes):
    
