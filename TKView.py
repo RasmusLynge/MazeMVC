@@ -5,8 +5,6 @@ import plotGenerator as plot_generator
 WIDTH = 1500
 HEIGHT = 700
 
-# https://refactoring.guru/design-patterns/observer
-
 maze_array = []
 isLog = False
 
@@ -86,10 +84,6 @@ def start_plot():
                 value_count += 1
             row_count += 1
 
-    def show_maze_list():
-        global maze_array
-        maze_array = controller.mazes_from_file()
-
     def load_maze_list():
         global maze_array
         maze_array = controller.mazes_from_file()
@@ -108,22 +102,22 @@ def start_plot():
 
         if isLog:
             hide_log.place(relx=0.1, rely=1)
-            pub.register(logSubscriber)
+            pub.register(log_subscriber)
             button_showhide_log.config(text="Hide Log")
             isLog = False
         else:
             hide_log.place(relx=0.1, rely=0.5)
-            pub.unregister(logSubscriber)
+            pub.unregister(log_subscriber)
             button_showhide_log.config(text="Show Log")
             isLog = True
 
     ###### Observer Pattern ######
     class Subscriber:
-        def __init__(self, name):
-            self.name = name
+        def __init__(self, functinon):
+            self.functinon = functinon
 
         def update(self, message):
-            self.name(message)
+            self.functinon(message)
 
     class Publisher:
         def __init__(self):
@@ -143,14 +137,12 @@ def start_plot():
         text_log['text'] += message
 
     pub = Publisher()
-    logSubscriber = Subscriber(write_to_log)
-    pub.register(logSubscriber)
+    log_subscriber = Subscriber(write_to_log)
+    pub.register(log_subscriber)
 
-    if(maze_array == []):
-        try:
-            show_maze_list()
-        except:
-            print("No file in archive")
+
+
+
 
     root = tk.Tk()
     root.title('Maze Solver 9000')
@@ -271,3 +263,4 @@ def start_plot():
     button_plot.place(relx=0.5, rely=0.3, relwidth=0.2, relheight=0.3)
 
     root.mainloop()
+
