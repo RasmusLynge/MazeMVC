@@ -2,6 +2,7 @@ import unittest
 import testException
 import testMazeGenerator
 import testMazeSolver
+
 if __name__ == '__main__':
     suite1 = unittest.TestLoader().loadTestsFromModule(testMazeSolver)
     suite2 = unittest.TestLoader().loadTestsFromModule(testException)

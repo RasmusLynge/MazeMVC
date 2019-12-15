@@ -53,10 +53,10 @@ def read_mazes_from_file():
                     full_grid = []
                     number_of_mazes += 1
         return all_mazes, number_of_mazes, sizes
-    except FileNotFoundError as e:
-        raise e
-    except StopIteration as e:
-        raise e
+    except FileNotFoundError:
+        raise
+    except StopIteration:
+        raise
 
 
 def write_maze_dict(dict_data):

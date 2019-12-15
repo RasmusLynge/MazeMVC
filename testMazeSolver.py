@@ -14,7 +14,6 @@ class TestSolver(unittest.TestCase):
             self.maze.append(row)
         self.solved_maze = ms.solve_single_maze(self.maze)
         
-
     def test_path_around_endpoint_visisted(self):  
        left_index_from_end = self.solved_maze[len(self.solved_maze)-2][len(self.solved_maze[len(self.solved_maze)-2])-3]
        top_index_from_end = self.solved_maze[len(self.solved_maze)-3][len(self.solved_maze[len(self.solved_maze)-3])-2]

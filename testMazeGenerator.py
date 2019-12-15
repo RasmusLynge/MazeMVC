@@ -1,13 +1,11 @@
 import unittest
 import mazeGenerator as mg
 
-
 class TestGenerator(unittest.TestCase):
     def setUp(self):
         self.size = 5
         self.maze_list = mg.generate(1,[self.size])
         self.maze = self.maze_list[2]
-        
 
     def test_generator_wall(self):
         self.assertListEqual(self.maze[0],['1']*(self.size*2+1),"Maze top wall dosn't fit the requirement")

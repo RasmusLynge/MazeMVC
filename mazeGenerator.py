@@ -2,7 +2,6 @@ from random import shuffle
 import sys
 import concurrent.futures
 
-
 #needed for DFS...
 sys.setrecursionlimit(10000)
 

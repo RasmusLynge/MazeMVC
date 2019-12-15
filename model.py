@@ -1,6 +1,5 @@
 import fileHandling as db
 
-
 def write_mazes_to_file(maze_list):
     db.write_mazes_to_file(maze_list)
 

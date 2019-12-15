@@ -2,7 +2,6 @@ import time
 import csv
 import os
 import platform
-
 import threading
 import concurrent.futures
 

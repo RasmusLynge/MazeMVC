@@ -36,7 +36,7 @@ def generate_plot(plot_data):
    plt.title('Solving time', fontsize=12)
    plt.xlabel("maze size", fontsize=10)
    plt.ylabel("time in ns", fontsize=10)
-# Nr. 2 graf starter her 
+   # Nr. 2 graf starter her 
    plt.subplot(1,2,2)
 
    plt.bar(maze_sizes, max_counts, width=1, align='center', label='Max points visited')
